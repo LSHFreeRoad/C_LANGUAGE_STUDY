@@ -1,0 +1,115 @@
+2nd theme : 자료형
+
+c언어는 다양한 정수 자료형을 제공함, sigend: 부호있는 정수, 생략 가능
+int: 생략가능, c언어에서는 문자를 정수 취급함
+부호			정수자료형			크기		long은 OS에 따라
+signed		char			1바이트	크기가 다름
+unsigned	short (int)		2바이트	windows->4바이트
+			int				4바이트	리눅스->32비트(4바이트)
+			long (int)		4바이트	64비트->8바이트	
+			long long (int)	8바이트	OS X->8바이트
+%d->decimal,%ld->long decimal,%lld->long long decimal
+%u ->unsigned, %lu -> long unsigned, %llu->long long
+unsigned, overflow-> 넘치는 것을 의미-> 그 다음 값이 됨
+underflow-> 모자라는 것을 의미 -> 그 다음 값이 됨
+int size = sizeof num1;
+int size2 = sizeof(int) //표현식(상수, 배열 등 프로그래머가 만들
+어낸 요소), <limits.h> //정수자료형의 최대, 최솟값이 정의된 헤더파일
+CHAR_MIN, SHORT_MIN, INT_MIN, LONG_MIN, LLONG_MIN
+UCHAR_MIN, USHORT_MIN, UINT_MIN, ULONG_MIN, ULLONG_MIN
+CHAR_MAX, SHORT_MAX, INT_MAX, LONG_MAX, LLONG_MAX
+UCHAR_MAX, USHORT_MAX, UINT_MAX, ULONG_MAX, ULLONG_MAX
+<stdint.h> -> 크기가 표시된 정수 자료형(stdint) 및 최대, 최솟값이 
+정의된 헤더 파일, 크기가 표시된 정수 자료형-> int8_t(8비트), 
+int16_t(16비트),int32_t(32비트), int64_t(64비트) 
+INT8_MIN, INT16_MIN, INT32_MIN, INT64_MIN
+INT8_MAX, INT16_MAX, INT32_MAX, INT64_MAX
+<float.h> -> 실수 자료형의 최대, 최솟값이 정의된 헤더파일
+프로그래밍 언어에서 실수(real number)는 소수점이 있는 수를 말함
+실수는 실수 자료형에 저장,실수 자료형: float,double,long double
+실수는 부동소수점 방식으로 정함, IEEE 754 표준규약 
+소수점이 떠다닌다고 해서 floating point
+부동소수점 방식 : ±(부호) m(가수) x nⁿ(기수,지수)
+기수는 2로 고정되있음, 저장할 때는 2 생략, float는 
+단정밀도 부동소수점 저장방식, double은 배정밀도 부동소수점 저장방식
+double이 좀 더 긴 자릿수의 소수점을 정밀하게 표현이 가능
+window 운영체제에서의 실수 자료형의 크기
+float : 4바이트, double: 8바이트, long double : 8바이트
+유효자릿수: float 7, double 16, long double 16 
+long double은 운영체제마다 크기가 다름
+float num1 = 0.1f;// .1f 1.f 가능(0생략, float는 f 써야됨)
+지수 표기법(exponential notation) -> 정수 부분을 한 자리로 만들고
+지수를 표시, 실수e+지수 : 실수 *10의 거듭제곱 ex)2.1e + 3은
+2.1*1000 = 2100을 의미, 실수e-지수 : 실수 *(1/10)의 거듭제곱
+2.1e - 2은 2.1*(1/100) = 0.021을 의미
+float num4 = 3.e5f;	 //300000 지수가 양수일 때 + 생략가능
+double num5 = -1.3827e-2;	//-0.013827	
+long double num6 = 5.21e+9l; //long double은 뒤에 l을
+붙여야됨,	%e 는 지수표기법(exponential notation)의 약자
+%Le 는 long exponential notation의 약자 
+FLT_MIN, DBL_MIN, LDBL_MIN
+FLI_MAX, DBL_MAX, LDBL_MAX	
+printf("%.40f\n%.2f\n", num10, num11);	
+//소수점이하 자릿수 지정 .40f -> 소수점 이하 40자리까지
+printf("%e\n%Le\n", num12, num13); //지수 표기법으로 출력
+INF ->  무한대(양수 최댓값에서 오버플로우 발생할 때)
+-INF -> 마이너스 무한대(음수 최솟값에서 언더 플로우 발생할 때)
+0또는 쓰레기 값으로 처리(양수 최솟값에서 언더 플로우 발생할 때) 
+a,b,c는 문자(character) -> C 언어는 정수 자료형 char에
+문자 한 개를 저장함, char의 크기는 1바이트, char : -128~127
+unsigned char :0~255, char 자료형은 문자를 바로 저장하지 않고
+문자에 해당하는 정수값을 저장함, 문자를 정수로 나타내는 규칙을 ASCII코드
+라고 부름, A~Z(65~90), a~z(97~122) 나머지 값들은 공백, 특수문자
+, 제어문자 등등, C 언어에서는 문자를 ''(작은 따옴표)로 묶음
+정수자료형에 2바이트 값을 저장할 때는 문자 두 개를 작은 따옴표로 묶기도 함
+예: 'BA', 상수는 변하지 않는 값을 뜻함(constant)
+리터럴은 값 그 자체를 뜻함, 상수는 변수처럼 리터럴이 저장된 공간 
+const int con1 = 10;, con1 -> 상수, 10-> 리터럴 	
+상수는 값이 의도치 않게 바뀌는 것을 방지하기 위해 사용
+코드의 의도를 명확하게 만들 수 있음,
+printf("0%o\n", 021);	//8진수는 숫자 앞에 0을 붙임
+//8진수 0~7까지 사용, //%o -> octal number의 약어로 o를 사용함
+printf("0x%X\n", 0x1F);	//16진수는 0x를 붙임
+//10~15는 A~F로 사용 
+const char con3 = 'a'; //const는 자료형 앞 뒤로 올 수가 있음 
+상수는 선언과 동시에 값 할당을 해줘야됨(초기화) -> 안하면 컴파일 에러
+printf("%ld\n", -10L);
+printf("%lld\n", -12948384928985923ll);
+printf("%lu\n", 10uL);
+printf("%llu\n", 18438929381894UlL);
+//대소문자를 섞어 쓰는 것도 가능함
+//리터럴은 접미사를 활용해서 크기를 명확하게 표현함
+//8진수와 16진수에도 접미사를 사용할 수 있음
+printf("0%lo\n", 017L);
+printf("0%lo\n", 017Ul);	
+//%u는 %o와 동급이라 같이 안 씀
+printf("0x%lx\n", 0x7FAbcael);
+printf("0x%llx\n", 0xF6535d45829ull); 
+//%u는 %x와 동급이라 같이 안 씀
+printf("%Lf\n", 0.1l);	//long double은 %Lf 씀
+//0.100000: long double 크기의 실수 리터럴
+C 언어를 배울 때는 콘솔(터미널, 명령 프롬프트)창에서
+키보드로 글자만 입출력하게 됨 
+표준 입력(명령 프롬프트에서 키보드 입력) =standard input, stdin
+표준 출력(명령 프롬프트에서 결과 출력) =standard output, stdout	
+scanf(서식, 변수의 주소)
+int scanf(char const *const_Format, ...)
+성공하면 가져온 값의 개수를 반환, 실패하면 EOF(-1)을 반환
+scanf는 표준 입력으로 사용자의 입력을 받는 함수 
+stdio.h 헤더파일에 선언되 있음 
+scanf함수에서 첫 번째 인자는 서식 지정자 %d를 넣어서
+정수를 입력받도록 함, 두 번째 인자는 입력값을 저장할
+변수를 넣어야함, #define _CRT_SECURE_NO_WARNINGS
+visual studio만 넣으면 됨, 리눅스나 OS X에선 넣을 필요가 없음
+scanf는 나온지 오래된 함수라 입력값의 길이를 설정할 수가
+없어서 보안에 취약함-> visual studio에서 사용하지 말라는
+경고가 출력되고 컴파일 에러가 발생함
+-> #define _CRT_SECURE_NO_WARNINGS
+(보안에 취약한 함수를 쓰더라도 경고와 컴파일 에러를
+발생시키지 말라는 의미), scanf_s는 입력값의 길이를 설정할 수가 있지만
+C언어 표준함수는 아니고 Visual Studio(Visual C++) 전용임
+scanf("%d %d", &num2, &num3);
+//입력받을 개수하고 서식 지정자 개수 및 변수 개수를 똑같이 맞춰야 함
+//또한 변수 앞에 &을 꼭 써야함 
+scanf("%c", &c2);	//문자 하나가 입력됨 
+char c3 = getchar();	//문자 하나를 입력받음	
